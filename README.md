@@ -1,6 +1,6 @@
 # vim
 
-Currently the only thing here is a function I wrote to shift all the absolute coordinates of an svg file by a specified x/y distance. It's usefull for doing simple repositioning without booting up an editor or changing the viewBox coordinate system.
+Currently the only thing here is a function I wrote to shift all the absolute coordinates of an svg file by a specified x/y distance. It's usefull for changing the viewBox coordinate system, or doing other simple repositioning without booting up an editor.
 
 ## Notes
 
