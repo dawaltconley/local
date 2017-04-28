@@ -6,9 +6,6 @@ function! ShiftSVGPath(type, dx, dy)
     let l:i = 0
     while l:more
         if a:type ==# 'A'
-            " \vA%(\v(-|(\d|\.)@<!)(\d+\.\d+|\d+|\.\d+)\D@=\v%(,| )=){5}\zs\v(-|(\d|\.)@<!)(\d+\.\d+|\d+|\.\d+)\D@=
-            " \vA%(\v-=(\d+\.\d+|\d+|\.\d+)\D@=\v%(,| )=){5}\zs\v-=(\d+\.\d+|\d+|\.\d+)\D@=
-            " \vA%(\v%(-=%(\d+\.\d+|\d+|\.\d+)|%(\v(\.\d+)@<=\.\d+))\D@=\v%(,| )=){5}\zs\v%(-=%(\d+\.\d+|\d+|\.\d+)|%(\v(\.\d+)@<=\.\d+))\D@='
             execute '%s/\vA%('.s:val.'){'.(l:i + 5).'}\zs'.s:num.'/\=(str2float(submatch(0))+a:dx)/ge'
             execute '%s/\vA%('.s:val.'){'.(l:i + 6).'}\zs'.s:num.'/\=(str2float(submatch(0))+a:dy)/ge'
             let l:i += 7
