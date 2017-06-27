@@ -1,12 +1,13 @@
 call plug#begin()
-Plug 'tpope/vim-sensible' " basic vim stuff
-Plug 'shougo/neocomplete.vim' " autocomplete
-Plug 'godlygeek/tabular' " needed for vim markdown
+Plug 'tpope/vim-sensible'       " basic vim stuff
+Plug 'shougo/neocomplete.vim'   " autocomplete
+Plug 'godlygeek/tabular'        " needed for vim markdown
 " Plug 'plasticboy/vim-markdown' " markdown stuff
-Plug 'tomtom/tcomment_vim' " comments
-Plug 'tpope/vim-liquid' " supports liquid highlighting / indentation in jekyll layouts
-Plug 'ctrlpvim/ctrlp.vim' " opening / navigating files
-Plug 'chase/vim-ansible-yaml' " only using for propper yaml indenting
+Plug 'tomtom/tcomment_vim'      " comments
+Plug 'tpope/vim-liquid'         " supports liquid highlighting / indentation in jekyll layouts
+Plug 'ctrlpvim/ctrlp.vim'       " opening / navigating files
+Plug 'chase/vim-ansible-yaml'   " only using for propper yaml indenting
+Plug 'tpope/vim-surround'       " easy editing of surrounding text
 call plug#end()
 
 set autowrite
