@@ -27,6 +27,8 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set splitbelow
 set splitright
 
+set clipboard=unnamed
+
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab filetype=ansible
 autocmd Filetype markdown setlocal wrap linebreak
