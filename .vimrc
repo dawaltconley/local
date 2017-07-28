@@ -8,6 +8,7 @@ Plug 'tpope/vim-liquid'         " supports liquid highlighting / indentation in 
 Plug 'ctrlpvim/ctrlp.vim'       " opening / navigating files
 Plug 'chase/vim-ansible-yaml'   " only using for propper yaml indenting
 Plug 'tpope/vim-surround'       " easy editing of surrounding text
+Plug 'mileszs/ack.vim'          " search with ag / ack
 call plug#end()
 
 set autowrite
@@ -87,3 +88,9 @@ let g:vim_markdown_frontmatter=1
 " CtrlP Settings
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|^.git$\|_site'
+
+" Ack Vim Settings
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif 
