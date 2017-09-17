@@ -2,3 +2,6 @@
 !.gitignore
 !.vimrc
 !.functions.vim
+!.regex.vim
+!bin/
+!bin/**
