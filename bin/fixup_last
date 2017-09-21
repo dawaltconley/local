@@ -1,0 +1,8 @@
+#!/bin/bash
+
+unstaged_changes=false
+git diff-files --quiet || unstaged_changes=true
+git commit --fixup HEAD
+if [ $unstaged_changes = true ]; then git stash; fi
+git rebase -i HEAD~2
+if [ $unstaged_changes = true ]; then git stash pop; fi
