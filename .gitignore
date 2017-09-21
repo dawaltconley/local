@@ -3,5 +3,6 @@
 !.vimrc
 !.functions.vim
 !.regex.vim
+!.profile
 !bin/
 !bin/**
