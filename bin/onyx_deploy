@@ -1,6 +1,6 @@
 #!/bin/bash
 
 bucket_name=$1
-JEKYLL_ENV=aws jekyll build --config _config.yml,_config-aws.yml
+JEKYLL_ENV=aws jekyll build
 npm run build
 aws s3 sync _site/ s3://$bucket_name
