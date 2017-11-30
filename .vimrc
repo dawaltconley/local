@@ -42,6 +42,9 @@ syntax on
 
 autocmd BufReadPost * silent! normal! g`"zv
 
+nnoremap <C-Right> :bn
+nnoremap <C-Left> :bp
+
 " Neocomplete Settings
 
 if has("lua")
