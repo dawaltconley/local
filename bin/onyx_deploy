@@ -1,14 +1,14 @@
 #!/bin/bash
 
 bucket_name=$1
-default_policy=`cat default-policy.json`
-policy="$bucket_name-policy.json"
-sub="BUCKET_NAME"
-echo "${default_policy/$sub/$bucket_name}" > $policy
 JEKYLL_ENV=aws jekyll build
 npm run build
 if ! aws s3 ls s3://$bucket_name &>/dev/null
-then aws s3 mb s3://$bucket_name
+then default_policy=`cat default-policy.json`
+    policy="$bucket_name-policy.json"
+    sub="BUCKET_NAME"
+    echo "${default_policy/$sub/$bucket_name}" > $policy
+    aws s3 mb s3://$bucket_name
     aws s3 website s3://$bucket_name --index-document index.html --error-document 404.html
     aws s3api put-bucket-policy --bucket $bucket_name --policy file://$policy
     rm $policy
