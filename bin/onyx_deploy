@@ -15,4 +15,4 @@ then aws s3 mb s3://$bucket_name
 fi
 aws s3 sync _site/ s3://$bucket_name
 location=`aws s3api get-bucket-location --bucket $bucket_name --query LocationConstraint`
-echo "Site deployed to http://$bucket_name.s3-website-${location//\"/}.amazonaws.com"
+echo "Site deployed to http://$bucket_name.s3-website.${location//\"/}.amazonaws.com"
