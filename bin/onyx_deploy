@@ -5,7 +5,7 @@ JEKYLL_ENV=aws jekyll build
 npm run build
 if ! aws s3 ls s3://$bucket_name &>/dev/null
 then aws s3 mb s3://$bucket_name
-    default_policy=`cat default-policy.json`
+    default_policy=`cat ~/bin/default-policy.json`
     policy="$bucket_name-policy.json"
     sub="BUCKET_NAME"
     echo "${default_policy/$sub/$bucket_name}" > $policy
