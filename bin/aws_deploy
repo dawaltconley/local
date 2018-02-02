@@ -1,8 +1,15 @@
 #!/bin/bash
 
-bucket_name=$1
-JEKYLL_ENV=aws jekyll build
-npm run build
+directory=$1
+bucket_name=$2
+if [ -z "$directory" ]
+then printf "No directory specified for deploy.\nusage: aws_deploy <directory> <bucket_name>\n"
+    exit 1
+fi
+if [ -z "$bucket_name" ]
+then printf "No bucket name given.\nusage: aws_deploy <directory> <bucket_name>\n"
+    exit 1
+fi
 if ! aws s3 ls s3://$bucket_name &>/dev/null
 then aws s3 mb s3://$bucket_name
     default_policy=`cat ~/bin/default-policy.json`
@@ -13,6 +20,6 @@ then aws s3 mb s3://$bucket_name
     aws s3api put-bucket-policy --bucket $bucket_name --policy file://$policy
     rm $policy
 fi
-aws s3 sync _site/ s3://$bucket_name
+aws s3 sync $directory/ s3://$bucket_name
 location=`aws s3api get-bucket-location --bucket $bucket_name --query LocationConstraint`
 echo "Site deployed to http://$bucket_name.s3-website.${location//\"/}.amazonaws.com"
