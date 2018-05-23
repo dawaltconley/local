@@ -34,6 +34,7 @@ set clipboard=unnamed
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab filetype=ansible
 autocmd Filetype markdown setlocal wrap linebreak
+autocmd Filetype text setlocal wrap linebreak
 
 source ~/.regex.vim
 source ~/.functions.vim
