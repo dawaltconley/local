@@ -105,7 +105,7 @@ let g:vim_markdown_frontmatter=1
 
 " CtrlP Settings
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|^.git$\|_site'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|^.git$\|_site\|env'
 
 " Ack Vim Settings
 
