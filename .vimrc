@@ -1,16 +1,21 @@
 call plug#begin()
-Plug 'tpope/vim-sensible'       " basic vim stuff
+Plug 'tpope/vim-sensible'         " basic vim stuff
 if has("lua")
     Plug 'shougo/neocomplete.vim'   " autocomplete
 endif
-Plug 'godlygeek/tabular'        " needed for vim markdown
-" Plug 'plasticboy/vim-markdown' " markdown stuff
-Plug 'tomtom/tcomment_vim'      " comments
-Plug 'tpope/vim-liquid'         " supports liquid highlighting / indentation in jekyll layouts
-Plug 'ctrlpvim/ctrlp.vim'       " opening / navigating files
-Plug 'chase/vim-ansible-yaml'   " only using for propper yaml indenting
-Plug 'tpope/vim-surround'       " easy editing of surrounding text
-Plug 'mileszs/ack.vim'          " search with ag / ack
+Plug 'godlygeek/tabular'          " needed for vim markdown
+" Plug 'plasticboy/vim-markdown'   " markdown stuff
+Plug 'tomtom/tcomment_vim'        " comments
+Plug 'tpope/vim-liquid'           " supports liquid highlighting / indentation in jekyll layouts
+Plug 'ctrlpvim/ctrlp.vim'         " opening / navigating files
+Plug 'chase/vim-ansible-yaml'     " only using for propper yaml indenting
+Plug 'tpope/vim-surround'         " easy editing of surrounding text
+Plug 'mileszs/ack.vim'            " search with ag / ack
+Plug 'kana/vim-textobj-user'      " needed for most text object plugins
+Plug 'vim-scripts/argtextobj.vim' " text objects for function arguments
+Plug 'kana/vim-textobj-indent'    " text objects for indented blocks of lines
+Plug 'mattn/vim-textobj-url'      " text objects for urls
+Plug 'glts/vim-textobj-comment'   " text objects for comments
 call plug#end()
 
 set autowrite
@@ -107,3 +112,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|^.git$\|_site'
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif 
+
+" Enforce Text Object Comment Keybinds
+
+autocmd VimEnter * :TextobjCommentDefaultKeyMappings!
