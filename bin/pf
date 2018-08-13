@@ -1,0 +1,114 @@
+#!/usr/local/bin/pwsh
+
+###################################################
+# Constant declaration
+###################################################
+$baseUri = “https://api.powerfactorscorp.com”
+$fullUri = “$baseUri/drive/v2/data”
+
+###################################################
+# Input from console
+###################################################
+$apiKey = Read-Host -Prompt 'API Key: '
+$customerID = Read-Host -Prompt 'Customer ID: '
+$resolution = Read-Host -Prompt 'Resolution (day, hour, raw): '
+
+$startTime = Read-Host -Prompt 'Start Time: '
+$endTime = Read-Host -Prompt 'End Time: '
+$attributes = Read-Host -Prompt 'Attributes (Attribute1,Attribute2): '
+$assetsElementPath = Read-Host -Prompt 'Assets (Element Path 1, Element Path 2): '
+$tagByColumn = Read-Host -Prompt 'One tag per column (1) or one tag per row (0): '
+$csvFile = Read-Host -Prompt 'File to save (empty do display in console):'
+
+###################################################
+# Prepare the call to the API
+###################################################
+$headers = @{
+    “Ocp-Apim-Subscription-Key” = "$apiKey";
+    “customerid” = “$customerID”
+}
+
+$body = @{
+    “startTime” = “$startTime";
+    “endTime” = “$endTime";
+    “resolution” = “$resolution”;
+    “attributes” = $attributes.Split(",");
+    “ids” = $assetsElementPath.Split(",");
+}
+
+$convertedBody = ConvertTo-Json $body
+
+###################################################
+# Call to the API
+###################################################
+$results = Invoke-RestMethod -Method Post -Uri $fullUri -ContentType “application/json” -
+Headers $headers -Body $convertedBody
+
+###################################################
+# Convert from JSON format to table format
+###################################################
+$OutList = New-Object -TypeName 'System.Collections.Generic.List[PSObject]'
+$Assets = $results.assets
+foreach ($Asset in $Assets)
+{
+    $Interval = ([TimeSpan]$Asset.interval)
+    $start = [DateTimeOffset]$Asset.startTime
+
+###################################################
+# Mode with one column per tag, one row per asset/timestamp
+###################################################
+    if ($tagByColumn -eq 1)
+    {
+        if ($Asset.attributes.Count -gt 0)
+        {
+            $index = 0
+            foreach ($value in $Asset.attributes[0].values)
+            {
+                $Record = New-Object PSObject -
+                Property ([Ordered]@{'Asset'=$Asset.id;'Timestamp(Asset Local)'=''})
+                $Record.'Timestamp(Asset Local)' = $start.DateTime.Add(($index * $Interval.Ticks ))
+                foreach($att in $Asset.attributes)
+                {
+                    $Record | Add-Member –MemberType NoteProperty –Name $Att.Name -
+                    Value $att.values[$index]
+                }
+
+                $OutList.Add($Record)
+
+                $index = $index + 1
+            }
+        }
+    }
+###################################################
+# Mode with one row per asset/tag/timestamp
+###################################################
+    else
+    {
+        foreach ($Att in $Asset.attributes)
+        {
+            $index = 0
+            foreach ($value in $Att.Values)
+            {
+                $Record = New-Object PSObject -
+                Property ([Ordered]@{'Asset'=$Asset.id;'Attribute'= $Att.name;'Timestamp(Asset
+                Local)'='';'Value'=$value})
+                $Record.'Timestamp(Asset Local)' = $start.DateTime.Add(($index * $Interval.Ticks ))
+                $OutList.Add($Record)
+                $index = $index + 1
+            }
+        }
+    }
+}
+
+###################################################
+# Save in CSV or display on console
+###################################################
+if ($csvFile -eq "")
+{
+    $OutList | ConvertTo-Csv -NoTypeInformation -Delimiter ';' | % {$_ -replace '"',''}
+}
+else
+{
+    $OutList | ConvertTo-Csv -NoTypeInformation -Delimiter ';' | % {$_ -replace '"',''} | Out-
+    File $csvFile
+}
