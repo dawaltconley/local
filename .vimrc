@@ -43,6 +43,7 @@ autocmd Filetype text setlocal wrap linebreak
 
 source ~/.regex.vim
 source ~/.functions.vim
+source ~/.macros.vim
 
 syntax on
 
