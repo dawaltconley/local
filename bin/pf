@@ -41,8 +41,7 @@ $convertedBody = ConvertTo-Json $body
 ###################################################
 # Call to the API
 ###################################################
-$results = Invoke-RestMethod -Method Post -Uri $fullUri -ContentType “application/json” -
-Headers $headers -Body $convertedBody
+$results = Invoke-RestMethod -Method Post -Uri $fullUri -ContentType “application/json” -Headers $headers -Body $convertedBody
 
 ###################################################
 # Convert from JSON format to table format
@@ -64,13 +63,11 @@ foreach ($Asset in $Assets)
             $index = 0
             foreach ($value in $Asset.attributes[0].values)
             {
-                $Record = New-Object PSObject -
-                Property ([Ordered]@{'Asset'=$Asset.id;'Timestamp(Asset Local)'=''})
+                $Record = New-Object PSObject -Property ([Ordered]@{'Asset'=$Asset.id;'Timestamp(Asset Local)'=''})
                 $Record.'Timestamp(Asset Local)' = $start.DateTime.Add(($index * $Interval.Ticks ))
                 foreach($att in $Asset.attributes)
                 {
-                    $Record | Add-Member –MemberType NoteProperty –Name $Att.Name -
-                    Value $att.values[$index]
+                    $Record | Add-Member –MemberType NoteProperty –Name $Att.Name -Value $att.values[$index]
                 }
 
                 $OutList.Add($Record)
@@ -89,9 +86,7 @@ foreach ($Asset in $Assets)
             $index = 0
             foreach ($value in $Att.Values)
             {
-                $Record = New-Object PSObject -
-                Property ([Ordered]@{'Asset'=$Asset.id;'Attribute'= $Att.name;'Timestamp(Asset
-                Local)'='';'Value'=$value})
+                $Record = New-Object PSObject -Property ([Ordered]@{'Asset'=$Asset.id;'Attribute'= $Att.name;'Timestamp(Asset Local)'='';'Value'=$value})
                 $Record.'Timestamp(Asset Local)' = $start.DateTime.Add(($index * $Interval.Ticks ))
                 $OutList.Add($Record)
                 $index = $index + 1
@@ -109,6 +104,5 @@ if ($csvFile -eq "")
 }
 else
 {
-    $OutList | ConvertTo-Csv -NoTypeInformation -Delimiter ';' | % {$_ -replace '"',''} | Out-
-    File $csvFile
+    $OutList | ConvertTo-Csv -NoTypeInformation -Delimiter ';' | % {$_ -replace '"',''} | Out-File $csvFile
 }
