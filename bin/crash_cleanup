@@ -5,3 +5,4 @@ for file in `find . -name "*.sw[po]"` ; do
     vim -r $file -c x
     rm $file
 done
+git status
