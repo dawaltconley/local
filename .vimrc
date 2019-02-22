@@ -16,6 +16,7 @@ Plug 'vim-scripts/argtextobj.vim' " text objects for function arguments
 Plug 'kana/vim-textobj-indent'    " text objects for indented blocks of lines
 Plug 'mattn/vim-textobj-url'      " text objects for urls
 Plug 'glts/vim-textobj-comment'   " text objects for comments
+Plug 'tpope/vim-fugitive'         " git integration
 Plug 'alvan/vim-closetag'         " automatic tag closing
 call plug#end()
 
