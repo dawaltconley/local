@@ -16,6 +16,7 @@ Plug 'vim-scripts/argtextobj.vim' " text objects for function arguments
 Plug 'kana/vim-textobj-indent'    " text objects for indented blocks of lines
 Plug 'mattn/vim-textobj-url'      " text objects for urls
 Plug 'glts/vim-textobj-comment'   " text objects for comments
+Plug 'alvan/vim-closetag'         " automatic tag closing
 call plug#end()
 
 set autowrite
@@ -51,6 +52,21 @@ autocmd BufReadPost * silent! normal! g`"zv
 
 nnoremap <C-Right> :bn
 nnoremap <C-Left> :bp
+
+" Auto-closing
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap (<space> (  )h
+inoremap [ []<left>
+inoremap [<space> [  ]h
+inoremap { {}<left>
+inoremap {<space> {  }h
+inoremap {% {%  %}2h
+inoremap {{ {{  }}2h
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " Neocomplete Settings
 
