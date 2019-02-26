@@ -64,8 +64,9 @@ inoremap [ []<left>
 inoremap [<space> [  ]h
 inoremap { {}<left>
 inoremap {<space> {  }h
-inoremap {% {%  %}2h
-inoremap {{ {{  }}2h
+inoremap {% {%%}h
+inoremap {%<space> {%  %}2h
+inoremap {{<space> {{  }}2h
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
