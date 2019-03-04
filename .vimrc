@@ -18,6 +18,8 @@ Plug 'mattn/vim-textobj-url'      " text objects for urls
 Plug 'glts/vim-textobj-comment'   " text objects for comments
 Plug 'tpope/vim-fugitive'         " git integration
 Plug 'alvan/vim-closetag'         " automatic tag closing
+Plug 'tpope/vim-speeddating'      " cool stuff with dates
+Plug 'tpope/vim-repeat'           " better period duplicating commands
 call plug#end()
 
 set autowrite
