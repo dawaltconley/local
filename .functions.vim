@@ -38,3 +38,51 @@ function! ShiftSVG(dx, dy)
     " Reset cursor position
     call winrestview(l:cursor)
 endfunction
+
+function! ScopeInclude()
+    " Mark top and bottom locations of file
+    normal! G
+    let l:top = search('{% \=assign global_scope_.\{-} \=%}', 'b')
+    if l:top
+        execute l:top
+        normal! jmt
+    else
+        normal! ggOmt
+    endif
+    normal! G
+    let l:bottom = search('{% \=assign .\{-}= \=global_scope_.\{-} \=%}', 'bc')
+    if l:bottom
+        execute l:bottom
+        normal! mb
+    else
+        normal! Gomb
+    endif
+    " Get all liquid variables in the include
+    normal! gg
+    let l:vars = []
+    while search('{% \=assign \(global_scope_\)\@!\S\{1,} \==.\{-} \=%}', 'zW')
+        normal! /{% \=assign \zs\S\{-}\ze \=="vygn
+        if index(l:vars, @v) < 0 && !search('global_scope_'.@v, 'nbw')
+            let l:vars = l:vars + [@v]
+        endif
+    endwhile
+    normal! gg
+    while search('{% \=capture \(global_scope_\)\@<!\S\{1,} \=%}', 'zW')
+        normal! /{% \=capture \zs\S\{-}\ze \=%}"vygn
+        if index(l:vars, @v) < 0 && !search('global_scope_'.@v, 'nw')
+            let l:vars = l:vars + [@v]
+        endif
+    endwhile
+    normal! gg
+    while search('{% \=for \(global_scope_\)\@!\S\{1,} in.\{-} \=%}', 'zW')
+        normal! /{% \=for \zs\S\{-}\ze in"vygn
+        if index(l:vars, @v) < 0 && !search('global_scope_'.@v, 'nw')
+            let l:vars = l:vars + [@v]
+        endif
+    endwhile
+    for l:v in l:vars
+        let @v = l:v
+        normal! 'tO{% assign global_scope_v = v %}
+        normal! 'bo{% assign v = global_scope_v %}mb
+    endfor
+endfunction
