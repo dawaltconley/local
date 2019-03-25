@@ -40,6 +40,7 @@ function! ShiftSVG(dx, dy)
 endfunction
 
 function! ScopeInclude()
+    let l:v_register = @v
     " Mark top and bottom locations of file
     normal! G
     let l:top = search('{% \=assign global_scope_.\{-} \=%}', 'b')
@@ -85,4 +86,6 @@ function! ScopeInclude()
         normal! 'tO{% assign global_scope_v = v %}
         normal! 'bo{% assign v = global_scope_v %}mb
     endfor
+    let @v = l:v_register
+    noh
 endfunction
