@@ -84,6 +84,7 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 inoremap <C-j> <esc>/\(}\@<=}\\|%\@<=}\\|[%}]\@<!}[%}]\@!\\|["')\]]\):nohla
+inoremap <C-l> <C-o>A
 
 " Neocomplete Settings
 
