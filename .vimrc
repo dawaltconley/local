@@ -60,10 +60,10 @@ nnoremap <C-Left> :bp
 " Auto-closing
 
 inoremap " ""<left>
-inoremap "" ""<left>
+inoremap "" ""
 inoremap "<bs> <Nop>
 inoremap ' ''<left>
-inoremap '' ''<left>
+inoremap '' ''
 inoremap '<bs> <Nop>
 inoremap ( ()<left>
 inoremap (<space> (  )F<space>
