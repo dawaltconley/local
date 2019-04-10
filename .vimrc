@@ -20,6 +20,7 @@ Plug 'tpope/vim-fugitive'         " git integration
 Plug 'alvan/vim-closetag'         " automatic tag closing
 Plug 'tpope/vim-speeddating'      " cool stuff with dates
 Plug 'tpope/vim-repeat'           " better period duplicating commands
+Plug 'othree/yajs.vim'            " es6 highlighting
 call plug#end()
 
 set autowrite
