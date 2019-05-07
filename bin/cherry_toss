@@ -1,0 +1,15 @@
+#!/bin/bash
+
+commit=$1
+original_directory=$PWD
+if [ -z "$commit" ] ; then
+    printf "No commit specified to cherry-pick from.\nusage: cherry_toss <commit>\n"
+    exit 1
+fi
+cd ~/sites/starter
+if ! git fetch ${original_directory##*/} ; then
+    git fetch --all
+fi
+if git cherry-pick -x $commit ; then
+    cd $original_directory
+fi
