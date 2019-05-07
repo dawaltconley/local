@@ -2,16 +2,16 @@
 
 directory=$1
 bucket_name=$2
-if [ -z "$directory" ]
-then printf "No directory specified for deploy.\nusage: aws_deploy <directory> <bucket_name>\n"
+if [ -z "$directory" ] ; then
+    printf "No directory specified for deploy.\nusage: aws_deploy <directory> <bucket_name>\n"
     exit 1
 fi
-if [ -z "$bucket_name" ]
-then printf "No bucket name given.\nusage: aws_deploy <directory> <bucket_name>\n"
+if [ -z "$bucket_name" ] ; then
+    printf "No bucket name given.\nusage: aws_deploy <directory> <bucket_name>\n"
     exit 1
 fi
-if ! aws s3 ls s3://$bucket_name &>/dev/null
-then aws s3 mb s3://$bucket_name
+if ! aws s3 ls s3://$bucket_name &>/dev/null ; then
+    aws s3 mb s3://$bucket_name
     default_policy=`cat ~/bin/default-policy.json`
     policy="$bucket_name-policy.json"
     sub="BUCKET_NAME"
