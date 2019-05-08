@@ -10,6 +10,6 @@ cd ~/sites/starter
 if ! git fetch ${original_directory##*/} ; then
     git fetch --all
 fi
-if git cherry-pick -x $commit ; then
+if git cherry-pick $commit ; then
     cd $original_directory
 fi
