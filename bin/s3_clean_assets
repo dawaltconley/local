@@ -1,0 +1,38 @@
+#!/bin/bash
+
+bucket_file=.aws-bucket
+if ! test -f $bucket_file
+then
+    echo "Could not retrieve bucket name from $bucket_file; no bucketfile found."
+    exit 1
+fi
+bucket_name=$(cat $bucket_file)
+aws_objects=$(mktemp)
+declare -a opt
+for dir in {backgrounds,srcset,pictures} ; do
+    dir="assets/gulp-$dir/"
+    aws s3 ls --recursive s3://$bucket_name/$dir |
+        grep -v "[0-9][wx]\." |
+        sed "s!^.*$dir\(.*\)\..*\$!\1!" > $aws_objects
+    while read -r obj
+    do
+        if ! test -n "$(find $dir -maxdepth 1 -name $obj* -print -quit)" 
+        then opt+=("--include=$dir$obj*")
+        fi
+    done < $aws_objects
+done
+rm $aws_objects
+if [ ${#opt} -eq 0 ]
+then
+    echo "All gulp assets in s3://$bucket_name match local files."
+    exit 0
+fi
+aws s3 rm --recursive --dryrun s3://$bucket_name/ --exclude=* ${opt[*]}
+while true ; do
+    read -p "Remove these objects from $bucket_name? (y/n) " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit 0;;
+    esac
+done
+aws s3 rm --recursive s3://$bucket_name/ --exclude=* ${opt[*]}
