@@ -21,6 +21,7 @@ Plug 'alvan/vim-closetag'         " automatic tag closing
 Plug 'tpope/vim-speeddating'      " cool stuff with dates
 Plug 'tpope/vim-repeat'           " better period duplicating commands
 Plug 'othree/yajs.vim'            " es6 highlighting
+Plug 'rickhowe/diffchar.vim'      " charachter-based diffs
 call plug#end()
 
 set autowrite
