@@ -8,3 +8,5 @@ HISTTIMEFORMAT="%d/%m/%y %T "
 
 alias powershell=pwsh
 alias resolve='vim $( git diff --name-only --diff-filter=U | uniq )'
+
+stty -ixon # turn off flow control

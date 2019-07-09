@@ -61,32 +61,22 @@ nnoremap <C-Left> :bp
 
 " Auto-closing
 
-inoremap " ""<left>
-inoremap "" ""
-inoremap "<bs> <Nop>
-inoremap ' ''<left>
-inoremap '' ''
-inoremap '<bs> <Nop>
-inoremap ( ()<left>
-inoremap (<space> (  )F<space>
-inoremap () ()
-inoremap (<bs> <Nop>
-inoremap [ []<left>
-inoremap [<space> [  ]F<space>
-inoremap [] []
-inoremap [<bs> <Nop>
-inoremap { {}<left>
-inoremap {<space> {  }F<space>
-inoremap {} {}
-inoremap {<bs> <Nop>
 inoremap {% {%%}F%
 inoremap {%<space> {%  %}F<space>
 inoremap {{<space> {{  }}F<space>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+inoremap <C-S>" ""<left>
+inoremap <C-S>' ''<left>
+inoremap <C-S>( ()<left>
+inoremap <C-S>(<space> (  )F<space>
+inoremap <C-S>[ []<left>
+inoremap <C-S>[<space> [  ]F<space>
+inoremap <C-S>{ {}<left>
+inoremap <C-S>{<space> {  }F<space>
 
 inoremap <C-j> <esc>/\(}\@<=}\\|%\@<=}\\|[%}]\@<!}[%}]\@!\\|["')\]]\):nohla
-inoremap <C-l> <C-o>A
+" inoremap <C-l> A
 
 " Neocomplete Settings
 
