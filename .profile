@@ -4,4 +4,6 @@ export NVM_DIR=~/.nvm
 export VISUAL=/usr/local/bin/vim
 source $(brew --prefix nvm)/nvm.sh
 
+HISTTIMEFORMAT="%d/%m/%y %T "
+
 alias powershell=pwsh
