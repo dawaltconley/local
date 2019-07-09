@@ -7,3 +7,4 @@ source $(brew --prefix nvm)/nvm.sh
 HISTTIMEFORMAT="%d/%m/%y %T "
 
 alias powershell=pwsh
+alias resolve='vim $( git diff --name-only --diff-filter=U | uniq )'
