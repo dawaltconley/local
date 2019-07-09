@@ -1,0 +1,22 @@
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[user]
+	name = Dylan Awalt-Conley
+	email = web@dylan.ac
+[rebase]
+	autosquash = true
+[rerere]
+	enabled = true
+[core]
+	pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
+[color]
+        ui = always
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22
+[interactive]
+	diffFilter = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
