@@ -22,6 +22,7 @@ Plug 'tpope/vim-speeddating'      " cool stuff with dates
 Plug 'tpope/vim-repeat'           " better period duplicating commands
 Plug 'othree/yajs.vim'            " es6 highlighting
 Plug 'rickhowe/diffchar.vim'      " charachter-based diffs
+Plug 'w0rp/ale'                   " linter
 call plug#end()
 
 set autowrite
@@ -143,3 +144,8 @@ endif
 " Enforce Text Object Comment Keybinds
 
 autocmd VimEnter * :TextobjCommentDefaultKeyMappings!
+
+" ALE Settings
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
