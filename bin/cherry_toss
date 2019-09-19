@@ -7,6 +7,7 @@ if [ -z "$commit" ] ; then
     exit 1
 fi
 cd ~/sites/starter
+git checkout master
 if ! git fetch ${original_directory##*/} ; then
     git fetch --all
 fi
