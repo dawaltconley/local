@@ -1,0 +1,33 @@
+#!/bin/bash
+
+config_file=".lambda-config"
+if [[ $# -eq 0 && -f $config_file ]] ; then
+    bucket_name=`head -n 1 $config_file | tail -1`
+    read -a files <<< `head -n 2 $config_file | tail -1`
+else
+    bucket_name=$1
+    files="${@:2}"
+    if [ -z "$bucket_name" ] ; then
+        printf "No bucket name given.\nusage: update-lambda [<bucket_name>] [<files>...]\n"
+        exit 1
+    fi
+    if [ ${#files[@]} -lt 1 ] ; then
+        printf "No files provided.\nusage: update-lambda [<bucket_name>] [<files>...]\n"
+        exit 1
+    fi
+    for file in $files ; do
+        if [ ! -f $file ] ; then
+            printf "$file doesn't exist.\n"
+            exit 1
+        fi
+    done
+fi
+echo "$bucket_name\n${files[@]}" > $config_file
+npm prune --production
+zip lambda $files
+zip -r lambda node_modules
+if ! aws s3 ls s3://$bucket_name &>/dev/null ; then
+    aws s3 mb s3://$bucket_name
+fi
+aws s3api put-object --bucket $bucket_name --key lambda.zip --body lambda.zip
+npm install
