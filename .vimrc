@@ -69,6 +69,7 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 inoremap <C-S>" ""<left>
 inoremap <C-S>' ''<left>
+inoremap <C-S>` ``<left>
 inoremap <C-S>( ()<left>
 inoremap <C-S>(<space> (  )F<space>
 inoremap <C-S>[ []<left>
