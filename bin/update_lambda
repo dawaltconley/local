@@ -2,7 +2,7 @@
 
 config=.lambda-config
 default_region=us-east-1
-usage="\nusage: update-lambda [-n <name>] [-r <region>] [<files>...]\n"
+usage="\nusage: update_lambda [-n <name>] [-r <region>] [<files>...]\n"
 
 while getopts ':n:r:' opt ; do
     case $opt in
@@ -11,6 +11,10 @@ while getopts ':n:r:' opt ; do
     esac
 done
 shift $(( OPTIND -1 ))
+
+if [ ! -d "$config" ] ; then
+    mkdir $config
+fi
 
 if [ -z "$region" ] ; then
     if [ -f "$config/region" ] ; then
@@ -54,6 +58,7 @@ else
 fi
 
 npm prune --production
+# npm uninstall --no-save aws-sdk
 zip lambda ${files[@]}
 zip -r lambda node_modules
 aws lambda update-function-code --function-name $name --zip-file fileb://lambda.zip --region $region
