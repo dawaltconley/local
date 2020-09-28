@@ -2,6 +2,7 @@ export PATH=$PATH:$HOME/bin
 eval "$(rbenv init -)"
 export NVM_DIR=~/.nvm
 export VISUAL=/usr/local/bin/vim
+export SAM_CLI_TELEMETRY=0
 source $(brew --prefix nvm)/nvm.sh
 
 HISTTIMEFORMAT="%d/%m/%y %l:%M:%S %p "
