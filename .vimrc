@@ -6,7 +6,7 @@ endif
 Plug 'godlygeek/tabular'          " needed for vim markdown
 " Plug 'plasticboy/vim-markdown'   " markdown stuff
 Plug 'tomtom/tcomment_vim'        " comments
-Plug 'tpope/vim-liquid'           " supports liquid highlighting / indentation in jekyll layouts
+" Plug 'tpope/vim-liquid'           " supports liquid highlighting / indentation in jekyll layouts
 Plug 'ctrlpvim/ctrlp.vim'         " opening / navigating files
 Plug 'chase/vim-ansible-yaml'     " only using for propper yaml indenting
 Plug 'tpope/vim-surround'         " easy editing of surrounding text
@@ -24,6 +24,7 @@ Plug 'othree/yajs.vim'            " es6 highlighting
 Plug 'rickhowe/diffchar.vim'      " charachter-based diffs
 Plug 'dense-analysis/ale'         " linter
 Plug 'alunny/pegjs-vim'           " PEG.js syntax highlighting
+Plug 'niftylettuce/vim-jinja'     " jinja / nunjucks highlighting
 call plug#end()
 
 set autowrite
@@ -45,6 +46,7 @@ set splitright
 set clipboard=unnamed
 
 autocmd Filetype html setlocal ts=2 sts=2 sw=2 
+autocmd Filetype jinja setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab filetype=ansible
 autocmd Filetype markdown setlocal wrap linebreak
 autocmd Filetype text setlocal wrap linebreak
