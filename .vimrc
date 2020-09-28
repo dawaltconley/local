@@ -135,7 +135,7 @@ let g:vim_markdown_frontmatter=1
 
 " CtrlP Settings
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|^.git$\|_site\|env'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Ack Vim Settings
 
