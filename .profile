@@ -7,6 +7,6 @@ source $(brew --prefix nvm)/nvm.sh
 HISTTIMEFORMAT="%d/%m/%y %l:%M:%S %p "
 
 alias powershell=pwsh
-alias resolve='vim $( git diff --name-only --diff-filter=U | uniq )'
+alias resolve='vim $( git diff --name-only --diff-filter=U | uniq ) +"/<\{7}" +"normal zz"'
 
 stty -ixon # turn off flow control
