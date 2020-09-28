@@ -22,7 +22,8 @@ Plug 'tpope/vim-speeddating'      " cool stuff with dates
 Plug 'tpope/vim-repeat'           " better period duplicating commands
 Plug 'othree/yajs.vim'            " es6 highlighting
 Plug 'rickhowe/diffchar.vim'      " charachter-based diffs
-Plug 'w0rp/ale'                   " linter
+Plug 'dense-analysis/ale'         " linter
+Plug 'alunny/pegjs-vim'           " PEG.js syntax highlighting
 call plug#end()
 
 set autowrite
