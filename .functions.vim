@@ -1,3 +1,7 @@
+function Indent(s)
+    execute 'setlocal ts='.a:s.' sts='.a:s.' sw='.a:s
+endfunction
+
 let s:num = '\v%(%(-|(\d|\.)@<!)%(\d+\.\d+|\d+|\.\d+)|%(\v(\.\d+)@<=\.\d+))\D@='
 let s:val = s:num.'\v%(,| )='
 
