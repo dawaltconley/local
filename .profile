@@ -9,5 +9,6 @@ HISTTIMEFORMAT="%d/%m/%y %l:%M:%S %p "
 
 alias powershell=pwsh
 alias resolve='vim $( git diff --name-only --diff-filter=U | uniq ) +"/<\{7}" +"normal zz"'
+alias soffice=/Applications/LibreOffice.app/Contents/MacOS/soffice
 
 stty -ixon # turn off flow control
