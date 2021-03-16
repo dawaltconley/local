@@ -22,6 +22,8 @@ Plug 'rickhowe/diffchar.vim'      " charachter-based diffs
 Plug 'dense-analysis/ale'         " linter
 Plug 'alunny/pegjs-vim'           " PEG.js syntax highlighting
 Plug 'niftylettuce/vim-jinja'     " jinja / nunjucks highlighting
+Plug 'chrisbra/csv.vim'           " csv editor
+Plug 'tpope/vim-unimpaired'       " xml escaping
 call plug#end()
 
 set autowrite
