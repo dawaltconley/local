@@ -1,4 +1,5 @@
 export PATH=$PATH:$HOME/bin
+export PATH=/usr/local/opt/openvpn/sbin:$PATH
 eval "$(rbenv init -)"
 export NVM_DIR=~/.nvm
 export VISUAL=/usr/local/bin/vim
